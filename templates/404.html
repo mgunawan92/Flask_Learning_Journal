@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}404 Error{% endblock %}
+
+{% block content %}
+
+<h1>We've encountered a problem</h1>
+
+<div>
+
+    <h2>That page does not exist</h2>
+    
+    <h2><a href="{{ url_for('index') }}">Click here to return to the Homepage</a></h2>
+    
+</div>
+
+{% endblock %}

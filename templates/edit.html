@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyJournal</title>
+        <link href="https://fonts.googleapis.com/css?family=Cousine:400" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/normalize.css">
+        <link rel="stylesheet" href="/static/css/site.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="site-header">
+                    <a class="logo" href="{{ url_for('index') }}"><i class="material-icons">library_books</i></a>
+                    <a class="button icon-right" href="{{ url_for('new') }}"><span>New Entry</span> <i class="material-icons">add</i></a>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="container">
+                <div class="edit-entry">
+                    <h2>Edit Entry</h2>
+                    {% for element in entry %}
+                        {% if current_user == element.username %}
+                            <form action="" method="POST" class="form">
+                                {{ form.hidden_tag() }}
+                                <label for="title"> Title</label>
+                                <input id="title" type="text" name="title" value = "{{ element.title }}"><br>
+                                <label for="date">Date</label>
+                                <input id="date" type="date" name="date" value = "{{ element.date }}"><br>
+                                <label for="time-spent"> Time Spent</label>
+                                <input id="time-spent" type="text" name="timeSpent" value = "{{ element.timeSpent }}"><br>
+                                <label for="what-i-learned">What I Learned</label>
+                                <textarea id="what-i-learned" rows="5" name="whatILearned" >{{ element.whatILearned }}</textarea>
+                                <label for="resources-to-remember">Resources to Remember</label>
+                                <textarea id="resources-to-remember" rows="5" name="ResourcesToRemember">{{ element.ResourcesToRemember }}</textarea>
+                                <input type="submit" value="Update Entry" class="button">
+                                <a href="{{ url_for('detail', id=element.id) }}" class="button button-secondary">Cancel</a>
+                            </form>
+                        {% else %}
+                        <p>Entry can only be edited by original user</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div>
+                &copy; MyJournal
+            </div>
+        </footer>
+    </body>
+</html>

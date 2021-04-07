@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyJournal</title>
+        <link href="https://fonts.googleapis.com/css?family=Cousine:400" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/normalize.css">
+        <link rel="stylesheet" href="/static/css/site.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="site-header">
+                    <a class="logo" href="{{ url_for('index') }}"><i class="material-icons">library_books</i></a>
+                    <a class="button icon-right" href="{{ url_for('new') }}"><span>New Entry</span> <i class="material-icons">add</i></a>
+                </div>
+            </div>
+        </header>
+        <section>
+            {% for element in entry %}
+            <div class="container">
+                <div class="entry-list single">
+                    <article>
+                        <h1>{{ element.title }}</h1>
+                        <time datetime="{{ entry.date }}">{{ element.date.strftime('%Y-%m-%d') }}</time>
+                        <div class="entry">
+                            <h3>Time Spent (Hours): </h3>
+                            <p>{{ element.timeSpent }}</p>
+                        </div>
+                        <div class="entry">
+                            <h3>What I Learned:</h3>
+                            <p>{{ element.whatILearned }}</p>
+                        </div>
+                        <div class="entry">
+                            <h3>Resources to Remember:</h3>
+                            <p>{{ element.ResourcesToRemember }}</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="edit">
+                {% if current_user == element.username %}
+                <p><a href="{{ url_for('edit', id = element.id) }}">Edit Entry</a></p>
+                <p><a href="{{ url_for('delete', id = element.id) }}">Delete Entry</a></p>
+                {% endif %}
+            </div>{% endfor %}
+        </section>
+        <footer>
+            <div>
+                &copy; MyJournal
+            </div>
+        </footer>
+    </body>
+</html>
