@@ -12,4 +12,4 @@ New Journal Entry feaure prompts user for following fields:
 * Learning Summary
 * Resources to remember
 
-Results are stored in local database file using Peewee ORM and displayed in blog style website.
+Additions are stored in local database file using Peewee ORM and displayed in blog style website.
