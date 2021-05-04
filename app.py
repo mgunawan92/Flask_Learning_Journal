@@ -1,7 +1,10 @@
+# import corresponding flask features
 from flask import (Flask, render_template, flash, redirect, url_for, g, abort)
 
+# import flask login features
 from flask_login import (LoginManager, login_user, logout_user, current_user, login_required)
 
+#import password hash from bcrypt
 from flask_bcrypt import check_password_hash
 
 import forms
